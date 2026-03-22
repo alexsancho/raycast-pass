@@ -1,32 +1,115 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "pass",
-  "title": "pass",
+  "title": "Pass Manager",
   "description": "Integrates with pass, the standard unix password manager https://www.passwordstore.org/",
+  "version": "1.0.0",
+  "categories": [
+    "Productivity",
+    "Security"
+  ],
   "icon": "command-icon.png",
   "author": "keegan",
+  "contributors": [
+    "alexsancho"
+  ],
   "license": "MIT",
   "commands": [
     {
-      "name": "pass",
-      "title": "pass",
-      "description": "",
+      "name": "search-pass",
+      "title": "Search password",
+      "description": "Command to browse pass entries, show, paste or copy defined values.",
       "mode": "view"
+    },
+    {
+      "name": "gen-pass",
+      "title": "Generate password",
+      "description": "Command to generate secure passwords",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "type": "text",
+          "name": "mask",
+          "placeholder": "aaa-Aa1a-a@a",
+          "required": false
+        }
+      ],
+      "preferences": [
+        {
+          "title": "Default mask",
+          "description": "Default mask for password generation. More Info https://github.com/paulmillr/micro-password-generator?tab=readme-ov-file#mask-control-characters",
+          "name": "mask",
+          "type": "textfield",
+          "default": "aaa-Aa1a-a@a",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "data": [
+        {
+          "title": "Paste to Active App",
+          "value": "paste"
+        },
+        {
+          "title": "Copy to Clipboard",
+          "value": "copy"
+        }
+      ],
+      "default": "paste",
+      "description": "The primary action to perform on a selected value.",
+      "name": "primaryAction",
+      "required": false,
+      "title": "Primary Action",
+      "type": "dropdown"
+    },
+    {
+      "name": "store",
+      "title": "Store",
+      "description": "The pass store",
+      "type": "directory",
+      "required": true,
+      "placeholder": "~/.password-store",
+      "default": "~/.password-store"
+    },
+    {
+      "name": "cli",
+      "title": "pass CLI path",
+      "description": "Enter the CLI binary path",
+      "type": "file",
+      "required": true,
+      "placeholder": "/usr/local/bin/pass",
+      "default": "/usr/local/bin/pass"
+    },
+    {
+      "name": "detail",
+      "title": "Detail",
+      "description": "Show details in list",
+      "label": "Show details",
+      "type": "checkbox",
+      "required": false,
+      "default": false
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.33.2",
-    "execa": "^6.1.0"
+    "@noble/hashes": "^1.4.0",
+    "@raycast/api": "^1.72.1",
+    "@raycast/utils": "^1.15.0",
+    "fuse.js": "^7.0.0",
+    "humanize-string": "^3.0.0",
+    "micro-password-generator": "^0.2.0",
+    "qrcode": "^1.5.3"
   },
   "devDependencies": {
-    "@types/node": "~16.10.0",
-    "@types/react": "^17.0.28",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.5.1",
-    "typescript": "^4.4.3"
+    "@raycast/eslint-config": "^1.0.8",
+    "@types/node": "~20.12.8",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.3.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
   },
   "scripts": {
     "build": "ray build -e dist",
