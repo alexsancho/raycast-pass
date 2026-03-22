@@ -2,8 +2,17 @@
 
 [Raycast](https://www.raycast.com/) Extension for [pass](https://www.passwordstore.org/), the standard unix password manager.
 
-I want [rofi-pass](https://github.com/carnager/rofi-pass) on a mac. This projects initial goals are to implement what I use in rofi-pass:
+Some functionality borrowed from gopass Raycast extension
+
+Currently the extension supports
 
 - [x] paste password or field into current application.
-- [ ] otp support
-- [ ] autotype support
+- [x] copy password or field to clipboard
+- [x] extended search with [Fuse](https://www.fusejs.io/examples.html#extended-search)
+- [x] QR code generation
+- [x] Details on list view
+- [x] Defaults configuration
+
+## Disclaimer
+
+This extension is for personal use, and it's only tested under MacOS Sonoma (Intel, ARM)
